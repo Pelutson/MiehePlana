@@ -3,14 +3,11 @@ body {
     width: 100%;
     font-family: Arial, sans-serif;
     background-color: #e4e6d5;
-    padding: 20rem;
+    padding: 2rem;
     text-align: center;
 }
 
-.main
-{
-    text-align: center;
-}
+
 
 h1 {
     color: #a6a7c5;
