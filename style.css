@@ -1,15 +1,24 @@
 body {
+    margin: 0;
     height: 100svh;
     width: 100%;
+    display: flex;
     font-family: Arial, sans-serif;
     background-color: #e4e6d5;
-    
+    justify-content: center;
     text-align: center;
+    height: 10svh;
+  
 }
 
 
-
+.main{
+    background-color: aqua;
+    margin-top: 40vh;
+}
 h1 {
+
+    
     color: #a6a7c5;
 }
 
