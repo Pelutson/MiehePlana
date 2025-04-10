@@ -1,19 +1,25 @@
 body {
+    height: 100svh;
+    width: 100%;
     font-family: Arial, sans-serif;
     background-color: #e4e6d5;
     padding: 20rem;
     text-align: center;
-  }
-  h1 {
+}
+
+h1 {
     color: #a6a7c5;
-  }
-  p {
+}
+
+p {
     color: #666;
-  }
-  a {
+}
+
+a {
     color: #007acc;
     text-decoration: none;
-  }
-  a:hover {
+}
+
+a:hover {
     text-decoration: underline;
-  }
+}
