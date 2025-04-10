@@ -13,24 +13,18 @@ body {
 
 
 .main{
-    background-color: aqua;
+    
     margin-top: 40vh;
 }
+
 h1 {
 
     
     color: #a6a7c5;
+    font-size: 5rem;
 }
 
 p {
     color: #666;
-}
-
-a {
-    color: #007acc;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+    
 }
