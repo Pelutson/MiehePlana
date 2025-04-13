@@ -2,7 +2,7 @@ body {
     margin: 0;
     width: 100%;
     display: flex;
-    font-family: 'Arial', sans-serif;
+    font-family: "aeonik Marker", sans-serif;
     background-color: #e4e6d5;
     flex-direction: column;
     justify-content: start;
@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-    color: #a6a7c5;
+    color: #323441;
     font-size: 5rem;
 }
 
