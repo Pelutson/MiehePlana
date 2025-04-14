@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="1024.0px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 1024 1024" width="1024.0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<linearGradient gradientTransform="matrix(801.411 0 0 688.34 0 35.7849)" gradientUnits="userSpaceOnUse" id="LinearGradient" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0" stop-color="#747bff"/>
+<stop offset="1" stop-color="#323441"/>
+</linearGradient>
+</defs>
+<g id="Layer-1">
+<path d="M92.5489 4.96718e-07C41.4355 2.22388e-07 0 41.4355 0 92.5489L0 931.451C0 982.564 41.4355 1024 92.5489 1024L931.451 1024C982.564 1024 1024 982.564 1024 931.451L1024 92.5489C1024 41.4355 982.564 5.27351e-06 931.451 4.99918e-06L92.5489 4.96718e-07ZM52.9375 135.912C52.9375 84.7986 94.373 43.363 145.486 43.363L895.139 43.363C946.252 43.363 987.687 84.7986 987.687 135.912L987.687 897.38C987.687 948.494 946.252 989.929 895.139 989.929L145.486 989.929C94.373 989.929 52.9375 948.494 52.9375 897.38L52.9375 135.912Z" fill="#4a4c59" fill-rule="nonzero" opacity="1" stroke="none"/>
+<g opacity="1">
+<path d="M821.325 98.0054L821.325 99.272L516.525 384.443L516.592 464.415L820.587 752.58L821.325 752.58L821.325 834.971L907.127 834.971L907.127 98.0054L821.325 98.0054ZM821.325 179.359L821.325 673.184L560.901 426.3L821.325 179.359Z" fill="#747bff" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M116.873 94.3205L116.873 98.0054L116.873 834.971L116.873 836.813L202.675 836.813L202.675 834.971L202.675 175.675L503.453 460.788L503.453 380.758L202.675 95.5872L202.675 94.3205L201.335 94.3205L116.873 94.3205Z" fill="#323441" fill-rule="nonzero" opacity="1" stroke="none"/>
+</g>
+<text fill="url(#LinearGradient)" font-family="Helvetica-Light" font-size="84" opacity="1" stroke="none" text-anchor="start" transform="matrix(1 0 0 1 113.892 866.773)" x="0" y="0">
+<tspan textLength="791.984" x="0" y="64.6804"><![CDATA[MARC MIEHE PLANA]]></tspan>
+</text>
+</g>
+</svg>
