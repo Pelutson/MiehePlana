@@ -3,7 +3,7 @@ body {
     width: 100%;
     display: flex;
     font-family: "aeonik Marker", sans-serif;
-    background-color: #e4e6d5;
+    background-color:rgb(215, 237, 204);
     flex-direction: column;
     justify-content: start;
     align-items: center;
