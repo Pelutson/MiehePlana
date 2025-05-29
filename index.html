@@ -1,87 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="author" content="Marc Miehe Plana" />
-  <meta name="keywords" content="Miehe Plana, Blender, HTML, CSS, Portfolio, Programmieren, Projekte, GitHub" />
-  <meta name="description" content="Here you will find my portfolio." />
-  <meta http-equiv="cache-control" content="no-cache" />
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Grundlegende Stile für die Schriftart */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2d3748; /* Dunklerer Text */
+            /* Hintergrundanimation */
+            background: linear-gradient(135deg, #e0f2f7, #cce7f5, #e0f2f7); /* Helle, subtile Farbverlauf */
+            background-size: 400% 400%; /* Macht den Farbverlauf größer als den Viewport */
+            animation: gradientBackground 15s ease infinite; /* Langsame, kontinuierliche Animation */
+        }
+        /* Scroll-Verhalten für sanftes Scrollen zu Ankern */
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <link rel="icon" type="image.svg" href="Static/img/WebICON/svg">
+        /* Keyframes für die Hintergrundanimation */
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        /* Keyframes für Fade-In Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Marc MP Portfolio" />
-  <meta property="og:description" content="Here you will find some code I wrote myself." />
-  <meta property="og:image" content="https://mieheplana.com/static/img/WebIconPNG418.png" />
-  <meta property="og:image:height" content="418"/>
-  <meta property="og:image:width" content="418"/>
+        /* Keyframes für Slide-In-Up Animation */
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-  <meta property="og:image:height" content="1200"/>
-  <meta property="og:image:width" content="630"/>
+        /* Utility-Klassen für Animationen */
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0; /* Standardmäßig unsichtbar, bis die Animation startet */
+        }
 
+        .animate-slideInUp {
+            animation: slideInUp 0.8s ease-out forwards;
+            opacity: 0; /* Standardmäßig unsichtbar, bis die Animation startet */
+        }
 
-  <!-- Title -->
-  <title>MiehePlana</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/Static/css/styles.css" />
+        /* Verzögerungen für gestaffelte Animationen */
+        .animation-delay-100 { animation-delay: 0.1s; }
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-300 { animation-delay: 0.3s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-500 { animation-delay: 0.5s; }
+        .animation-delay-600 { animation-delay: 0.6s; }
+    </style>
 </head>
+<body class="antialiased">
+    <header class="bg-white shadow-lg py-4 px-6 fixed w-full z-10 rounded-b-2xl">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800 hover:text-blue-700 transition duration-300">Dein Name</a>
+            <ul class="flex space-x-6">
+                <li><a href="#ueber-mich" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Über mich</a></li>
+                <li><a href="#projekte" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Projekte</a></li>
+                <li><a href="#lebenslauf" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Lebenslauf</a></li>
+                <li><a href="#kontakt" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<body>
+    <section class="bg-gradient-to-br from-blue-700 to-indigo-800 text-white flex items-center justify-center h-screen pt-16">
+        <div class="text-center p-8 max-w-3xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight animate-fadeIn animation-delay-100">Hallo, ich bin <span class="text-yellow-300 drop-shadow-lg">Dein Name</span></h1>
+            <p class="text-xl md:text-2xl mb-8 animate-fadeIn animation-delay-300">Ein leidenschaftlicher Entwickler mit Fokus auf <span class="font-semibold">[Deine Spezialisierung, z.B. Webentwicklung, Datenwissenschaft]</span>.</p>
+            <a href="#projekte" class="bg-white text-blue-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-xl transition duration-300 transform hover:scale-105 animate-fadeIn animation-delay-500">Meine Projekte entdecken</a>
+        </div>
+    </section>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
-    <div class="container">
-      <a class="navbar-brand" href="#">MiehePlana</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarInhalt">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarInhalt">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Start</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About Me</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Kontakt</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
+    <section id="ueber-mich" class="py-20 px-6 bg-white rounded-3xl shadow-2xl mx-auto max-w-5xl -mt-20 relative z-0 animate-slideInUp">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">Über mich</h2>
+            <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto mb-12">
+                Hier kannst du eine ausführlichere Beschreibung über dich selbst einfügen.
+                Erzähle etwas über deine Fähigkeiten, deine Erfahrungen, deine Leidenschaften
+                und was dich als Entwickler auszeichnet. Zum Beispiel: "Ich bin ein erfahrener
+                Softwareentwickler mit einem starken Hintergrund in [Sprache/Technologie].
+                Meine Leidenschaft liegt darin, innovative und benutzerfreundliche Lösungen zu entwickeln."
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-50 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Fähigkeiten</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>JavaScript, Python, Java</li>
+                        <li>React, Angular, Vue.js</li>
+                        <li>Node.js, Django, Spring Boot</li>
+                        <li>SQL, MongoDB</li>
+                        <li>Cloud (AWS, Azure, GCP)</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Erfahrung</h3>
+                    <p class="text-gray-600">
+                        [Jahre] Jahre Erfahrung in der Softwareentwicklung.
+                        Arbeitete an verschiedenen Projekten von der Konzeption bis zur Bereitstellung.
+                        Fokus auf sauberen Code und Best Practices.
+                    </p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Interessen</h3>
+                    <p class="text-gray-600">
+                        Neben dem Programmieren interessiere ich mich für [Deine Hobbys, z.B. Open Source, Sport, Lesen].
+                        Ich liebe es, neue Technologien zu lernen und mich ständig weiterzubilden.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Hero Section -->
-  <div class="hero text-center p-5">
-    <h1>
-      Hi, my name is 
-      <span style="color:#25824d">Marc</span>
-    </h1>
-    <p>Here you will find some code I wrote!</p>
-    <p><em>Still work in progress...</em></p>
-  </div>
+    <section id="projekte" class="py-20 px-6 bg-gray-100 animate-slideInUp animation-delay-200">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12">Meine GitHub Projekte</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x400/E0F2F7/2C5282?text=Projekt+Bild+1" alt="Projektbild 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Projekt Titel 1</h3>
+                        <p class="text-gray-600 mb-4">Eine kurze Beschreibung deines Projekts. Was es tut und welche Technologien verwendet wurden.</p>
+                        <a href="https://github.com/dein-github/projekt1" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-2 px-5 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">
+                            GitHub ansehen
+                        </a>
+                    </div>
+                </div>
 
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x400/FFF3E0/D35400?text=Projekt+Bild+2" alt="Projektbild 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Projekt Titel 2</h3>
+                        <p class="text-gray-600 mb-4">Eine kurze Beschreibung deines Projekts. Was es tut und welche Technologien verwendet wurden.</p>
+                        <a href="https://github.com/dein-github/projekt2" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-2 px-5 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">
+                            GitHub ansehen
+                        </a>
+                    </div>
+                </div>
 
-<div class="main">
-  <h1>test</h1>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x400/E6F7E6/27AE60?text=Projekt+Bild+3" alt="Projektbild 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Projekt Titel 3</h3>
+                        <p class="text-gray-600 mb-4">Eine kurze Beschreibung deines Projekts. Was es tut und welche Technologien verwendet wurden.</p>
+                        <a href="https://github.com/dein-github/projekt3" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-2 px-5 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">
+                            GitHub ansehen
+                        </a>
+                    </div>
+                </div>
 
-</div>
+                </div>
+        </div>
+    </section>
 
+    <section id="lebenslauf" class="py-20 px-6 bg-white rounded-3xl shadow-2xl mx-auto max-w-5xl my-20 animate-slideInUp animation-delay-400">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">Mein Lebenslauf</h2>
+            <div class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
+                <p>Hier kannst du deinen Lebenslauf direkt einfügen oder einen Link zu einer PDF-Version bereitstellen.</p>
+                <p class="mt-4">
+                    Es ist oft am besten, eine PDF-Datei zu verlinken, da dies die Formatierung
+                    auf verschiedenen Geräten besser beibehält.
+                </p>
+            </div>
+            <a href="dein-lebenslauf.pdf" target="_blank" class="bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-105">
+                Lebenslauf herunterladen (PDF)
+            </a>
+            <div class="mt-12 p-8 bg-gray-50 rounded-2xl shadow-md text-left">
+                <h3 class="text-3xl font-semibold text-gray-800 mb-6">Dein Lebenslauf (Inline)</h3>
+                <h4 class="text-2xl font-semibold text-gray-700 mb-4">Berufserfahrung</h4>
+                <div class="mb-6">
+                    <h5 class="text-xl font-medium text-gray-800">Softwareentwickler | Unternehmen X</h5>
+                    <p class="text-gray-600">Januar 2020 - Heute</p>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Entwicklung und Wartung von Webanwendungen mit React und Node.js.</li>
+                        <li>Implementierung von RESTful APIs und Datenbankintegration (MongoDB).</li>
+                        <li>Zusammenarbeit in agilen Teams und Teilnahme an Code Reviews.</li>
+                    </ul>
+                </div>
+                <div class="mb-6">
+                    <h5 class="text-xl font-medium text-gray-800">Junior Entwickler | Unternehmen Y</h5>
+                    <p class="text-gray-600">Juli 2018 - Dezember 2019</p>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Unterstützung bei der Entwicklung von Front-End-Komponenten.</li>
+                        <li>Fehlerbehebung und Optimierung bestehender Anwendungen.</li>
+                    </ul>
+                </div>
 
+                <h4 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Ausbildung</h4>
+                <div class="mb-6">
+                    <h5 class="text-xl font-medium text-gray-800">Bachelor in Informatik | Universität Z</h5>
+                    <p class="text-gray-600">September 2015 - Juni 2018</p>
+                    <ul class="list-disc list-inside text-gray-600 mt-2">
+                        <li>Schwerpunkt: Software Engineering</li>
+                        <li>Abschlussarbeit: [Titel der Abschlussarbeit]</li>
+                    </ul>
+                </div>
 
+                <h4 class="text-2xl font-semibold text-gray-700 mb-4 mt-8">Fähigkeiten</h4>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">React</span>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Agile Methoden</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <footer id="kontakt" class="bg-gray-800 text-white py-8 px-6 rounded-t-2xl">
+        <div class="container mx-auto text-center">
+            <p class="mb-4 text-lg">Kontaktiere mich:</p>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="mailto:deine.email@example.com" class="text-gray-300 hover:text-white transition duration-300">
+                    Email: deine.email@example.com
+                </a>
+                <a href="https://github.com/dein-github-username" target="_blank" class="text-gray-300 hover:text-white transition duration-300">
+                    GitHub: dein-github-username
+                </a>
+                <a href="https://linkedin.com/in/dein-linkedin-profil" target="_blank" class="text-gray-300 hover:text-white transition duration-300">
+                    LinkedIn: dein-linkedin-profil
+                </a>
+            </div>
+            <p class="text-sm text-gray-500">&copy; 2024 Dein Name. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
 
+    <script>
+        // JavaScript für die "Scroll-Animation" der Sektionen
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+
+            const observerOptions = {
+                root: null, // Der Viewport ist der Root
+                rootMargin: '0px',
+                threshold: 0.1 // Wenn 10% der Sektion sichtbar sind
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Füge die Animationsklasse hinzu, wenn die Sektion sichtbar wird
+                        entry.target.classList.add('animate-slideInUp');
+                        // Entferne den Observer, nachdem die Animation einmal ausgelöst wurde
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Beobachte alle Sektionen außer der Hero-Sektion, da diese direkt sichtbar ist
+            sections.forEach(section => {
+                // Die Hero-Sektion hat keine ID für diesen Zweck in diesem Kontext,
+                // aber wir wollen sicherstellen, dass nur die scrollbaren Sektionen beobachtet werden.
+                // Die Hero-Sektion wird separat animiert.
+                if (section.id && section.id !== 'hero') { // Annahme, dass Hero keine ID 'hero' hat, sondern nur die Klasse für die Animation
+                    sectionObserver.observe(section);
+                }
+            });
+
+            // Spezielle Animation für die Hero-Sektion, da sie sofort sichtbar ist
+            // Diese Elemente erhalten ihre Animation direkt beim Laden
+            const heroElements = document.querySelectorAll('.animate-fadeIn'); // Elemente mit dieser Klasse im Hero-Bereich
+            heroElements.forEach(element => {
+                // Die Animation wird direkt durch die Klasse im HTML ausgelöst
+                // Hier ist kein zusätzliches JS nötig, da sie sofort sichtbar ist
+            });
+        });
+    </script>
 </body>
 </html>
