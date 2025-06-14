@@ -3,13 +3,514 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MiehePlana - Marc's Developer Portfolio</title>
-    <!-- Font Awesome für Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Inter (als Fallback) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Verlinkung zur externen CSS-Datei -->
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>MiehePlana - Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff 0%, #9b59b6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #00d4ff, #9b59b6);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="code" width="20" height="20" patternUnits="userSpaceOnUse"><text x="2" y="8" fill="rgba(0,212,255,0.1)" font-size="8" font-family="monospace">&lt;/&gt;</text><text x="2" y="18" fill="rgba(155,89,182,0.1)" font-size="6" font-family="monospace">{}</text></pattern></defs><rect width="100" height="100" fill="url(%23code)"/></svg>');
+            animation: codeFloat 25s linear infinite;
+        }
+
+        @keyframes codeFloat {
+            0% { transform: translateX(-50px) translateY(-50px); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff 0%, #9b59b6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .typing-text {
+            font-family: 'Courier New', monospace;
+            border-right: 2px solid #00d4ff;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #00d4ff; }
+        }
+
+        /* Programming Languages Section */
+        .skills {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #9b59b6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: rotateY(360deg);
+        }
+
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover .skill-name {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 2rem;
+            background: #0f0f23;
+            color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #00d4ff, #9b59b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+        }
+
+        .project-description {
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* Phone Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-container {
+            position: relative;
+            animation: phoneFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .phone {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 40px;
+            padding: 40px 20px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid #444;
+        }
+
+        .phone::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: #666;
+            border-radius: 3px;
+        }
+
+        .phone::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border: 2px solid #666;
+            border-radius: 50%;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+            border-radius: 25px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #00d4ff, #9b59b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-icons {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid #00d4ff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-icon:hover {
+            background: linear-gradient(135deg, #00d4ff, #9b59b6);
+            color: white;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.4);
+            border-color: transparent;
+        }
+
+        .contact-icon:hover::after {
+            opacity: 1;
+            transform: translateY(-70px) scale(1);
+        }
+
+        .contact-icon::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px) scale(0.8);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .skill-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phone {
+                width: 240px;
+                height: 480px;
+                padding: 30px 15px;
+            }
+
+            .contact-icons {
+                gap: 1.5rem;
+            }
+
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation for scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -19,175 +520,127 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#project-generator-section">Ideen</a></li>
+                <li><a href="#projects">Projekte</a></li>
                 <li><a href="#contact">Kontakt</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section (Startseite) -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Hallo, ich bin Marc!</h1>
+            <h1>Marc</h1>
             <p>Ich bin ein <span class="typing-text" id="typing-text">Full-Stack Developer</span></p>
-            <p>Leidenschaftlicher Entwickler mit Fokus auf moderne Webtechnologien.</p>
+            <p>Leidenschaftlicher Entwickler mit Fokus auf moderne Webtechnologien</p>
         </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">Meine Expertise</h2>
+            <h2 class="section-title">Meine Skills</h2>
             <div class="skills-grid">
-                <!-- Die Skill-Karten mit Font Awesome Icons -->
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-html5"></i>
-                    </span>
-                    <div class="skill-name">HTML5</div>
+                <div class="skill-card">
+                    <span class="skill-icon">🌐</span>
+                    <div class="skill-name">HTML</div>
                 </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-css3-alt"></i>
-                    </span>
-                    <div class="skill-name">CSS3</div>
+                <div class="skill-card">
+                    <span class="skill-icon">🎨</span>
+                    <div class="skill-name">CSS</div>
                 </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-js"></i>
-                    </span>
-                    <div class="skill-name">JavaScript</div>
-                </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-react"></i>
-                    </span>
-                    <div class="skill-name">React</div>
-                </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-python"></i>
-                    </span>
-                    <div class="skill-name">Python</div>
-                </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-java"></i>
-                    </span>
+                <div class="skill-card">
+                    <span class="skill-icon">☕</span>
                     <div class="skill-name">Java</div>
                 </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-php"></i>
-                    </span>
-                    <div class="skill-name">PHP</div>
+                <div class="skill-card">
+                    <span class="skill-icon">🐍</span>
+                    <div class="skill-name">Python</div>
                 </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-node-js"></i>
-                    </span>
-                    <div class="skill-name">Node.js</div>
-                </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fas fa-database"></i>
-                    </span>
-                    <div class="skill-name">Datenbanken</div>
-                </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-git-alt"></i>
-                    </span>
-                    <div class="skill-name">Git</div>
-                </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fab fa-docker"></i>
-                    </span>
-                    <div class="skill-name">Docker</div>
-                </div>
-                 <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fas fa-cogs"></i>
-                    </span>
+                <div class="skill-card">
+                    <span class="skill-icon">⚡</span>
                     <div class="skill-name">C++</div>
                 </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </span>
+                <div class="skill-card">
+                    <span class="skill-icon">🔗</span>
                     <div class="skill-name">n8n</div>
                 </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fas fa-palette"></i>
-                    </span>
+                <div class="skill-card">
+                    <span class="skill-icon">🖼️</span>
                     <div class="skill-name">Photoshop</div>
                 </div>
-                <div class="skill-card fade-in">
-                    <span class="skill-icon">
-                        <i class="fas fa-video"></i>
-                    </span>
+                <div class="skill-card">
+                    <span class="skill-icon">🎬</span>
                     <div class="skill-name">Premiere Pro</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projektideen-Generator Sektion (Gemini API Funktion) -->
-    <section id="project-generator-section" class="project-generator fade-in">
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">✨ Starte dein nächstes Projekt ✨</h2>
-            <p class="text-lg text-gray-300 mb-6 max-w-xl mx-auto">
-                Lass die KI dir eine innovative Projektidee vorschlagen, die auf meinen Fähigkeiten basiert. Du kannst ein optionales Thema eingeben.
-            </p>
-            <textarea id="project-idea-theme" rows="2" class="w-full max-w-lg p-3 mb-4 rounded-xl" placeholder="Optional: Gib hier ein Thema für die Projektidee ein (z.B. 'Bildung', 'Spiele', 'Finanzen')..."></textarea>
-            <button id="generate-idea-btn">
-                ✨ Projektidee generieren ✨
-            </button>
-            <div id="generated-idea-output">
-                Deine Projektidee erscheint hier...
-            </div>
-            <div id="loading-indicator" class="hidden">
-                <i class="fas fa-spinner fa-spin mr-2"></i>Generiere Idee...
-            </div>
-            <div id="error-message" class="hidden">
-                <i class="fas fa-exclamation-circle mr-2"></i>Ein Fehler ist aufgetreten. Bitte versuche es später erneut.
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section (Handy-Bereich) -->
-    <section id="contact" class="contact">
-        <div class="container flex flex-col items-center">
-            <h2 class="contact-section-title">Kontaktiere mich & Projekte</h2>
-            <div class="phone-container fade-in">
-                <div class="phone">
-                    <div class="phone-screen">
-                        <!-- Bildschirm-Inhalt: Hier könnte dein eigenes Handy-Bild oder eine kleine Demo sein -->
-                        <h3 class="contact-title" style="margin-bottom: 0;">Meine Projekte</h3>
-                        <p style="color: #ccc; text-align: center; font-size: 0.9rem;">Immer im Blick</p>
-                        <!-- Social Media Icons auf dem Bildschirm -->
-                        <div class="contact-icons">
-                            <a href="https://linkedin.com/in/deinprofil" target="_blank" class="contact-icon" data-tooltip="LinkedIn Profil">
-                                <!-- LinkedIn SVG Icon (Direkt integriert) -->
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                            </a>
-                            <a href="https://github.com/deinprofil" target="_blank" class="contact-icon" data-tooltip="GitHub Repositories">
-                                <!-- GitHub SVG Icon (Direkt integriert) -->
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                            </a>
+            <h2 class="section-title">Meine Projekte</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Web Portfolio</h3>
+                        <p class="project-description">Eine moderne, responsive Portfolio-Website mit interaktiven Elementen und Animationen.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mobile App</h3>
+                        <p class="project-description">Eine React Native App für mobile Geräte mit modernem UI/UX Design.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Redux</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">🔧</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Backend API</h3>
+                        <p class="project-description">RESTful API entwickelt mit Node.js und Express für verschiedene Frontend-Anwendungen.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">MongoDB</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <p style="color: #ccc; text-align: center; margin-top: 2rem; font-size: 1rem; max-width: 600px;">
-                Vernetze dich mit mir auf LinkedIn oder entdecke meine Open-Source-Projekte auf GitHub!
-            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="phone-container">
+            <div class="phone">
+                <div class="phone-screen">
+                    <h3 class="contact-title">Kontaktiere mich</h3>
+                    <div class="contact-icons">
+                        <div class="contact-icon" data-tooltip="LinkedIn Profil" onclick="window.open('https://linkedin.com', '_blank')">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-icon" data-tooltip="GitHub Repositories" onclick="window.open('https://github.com', '_blank')">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -198,7 +651,125 @@
         </div>
     </footer>
 
-    <!-- Verlinkung zur externen JavaScript-Datei -->
-    <script src="script.js"></script>
+    <script>
+        // Typing animation
+        const typingText = document.getElementById('typing-text');
+        const roles = ['Full-Stack Developer', 'Frontend Developer', 'Backend Developer', 'Web Designer'];
+        let currentRole = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+
+        function typeRole() {
+            const current = roles[currentRole];
+            
+            if (isDeleting) {
+                typingText.textContent = current.substring(0, currentChar - 1);
+                currentChar--;
+            } else {
+                typingText.textContent = current.substring(0, currentChar + 1);
+                currentChar++;
+            }
+
+            let typeSpeed = isDeleting ? 100 : 150;
+
+            if (!isDeleting && currentChar === current.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentRole = (currentRole + 1) % roles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeRole, typeSpeed);
+        }
+
+        typeRole();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 212, 255, 0.3)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add floating code symbols
+        function createCodeSymbol() {
+            const symbols = ['{ }', '< >', '( )', '[ ]', '/>', '==', '!=', '&&', '||'];
+            const symbol = document.createElement('div');
+            symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.position = 'absolute';
+            symbol.style.color = 'rgba(0, 212, 255, 0.3)';
+            symbol.style.fontSize = '1rem';
+            symbol.style.fontFamily = 'monospace';
+            symbol.style.pointerEvents = 'none';
+            symbol.style.left = Math.random() * 100 + '%';
+            symbol.style.top = '100%';
+            symbol.style.zIndex = '1';
+            
+            const hero = document.querySelector('.hero');
+            hero.appendChild(symbol);
+            
+            const animation = symbol.animate([
+                { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
+                { transform: 'translateY(-100vh) rotate(360deg)', opacity: 0 }
+            ], {
+                duration: Math.random() * 4000 + 3000,
+                easing: 'linear'
+            });
+            
+            animation.onfinish = () => symbol.remove();
+        }
+
+        // Create floating symbols periodically
+        setInterval(createCodeSymbol, 500);
+
+        // Skills animation on hover
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+            });
+        });
+    </script>
 </body>
 </html>
